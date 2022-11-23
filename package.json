@@ -2,7 +2,11 @@
   "name": "@stations-project/storage",
   "version": "1.0.0-alpha",
   "description": "Allows users to store documents",
+  "type": "module",
   "main": "index.js",
+  "bin": {
+	  "storage": "./index.js"
+  },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -15,5 +19,8 @@
   "bugs": {
     "url": "https://github.com/marlon-erler/stations-project-storage/issues"
   },
-  "homepage": "https://github.com/marlon-erler/stations-project-storage#readme"
+  "homepage": "https://github.com/marlon-erler/stations-project-storage#readme",
+  "dependencies": {
+    "@types/node": "^18.11.9"
+  }
 }
