@@ -1,0 +1,19 @@
+{
+  "name": "@stations-project/storage",
+  "version": "1.0.0-alpha",
+  "description": "Allows users to store documents",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/marlon-erler/stations-project-storage.git"
+  },
+  "author": "a035",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/marlon-erler/stations-project-storage/issues"
+  },
+  "homepage": "https://github.com/marlon-erler/stations-project-storage#readme"
+}
