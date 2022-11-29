@@ -33,6 +33,16 @@ try {
 //main]
 switch (subcommand) {
 		//read
+	case "fin": {
+		try {
+			let content = await Fs.readFile(path, { encoding: "utf8" });
+			console.log(content);
+			process.exit(0);
+		} catch {
+			console.log("e2");
+			process.exit();
+		}
+	}
 	case "ls": {
 		try {
 			let items = await Fs.readdir(path) as any[];
@@ -58,6 +68,16 @@ switch (subcommand) {
 	}
 
 		//write
+	case "fout": {
+		try {
+			await Fs.writeFile(path, arg_2);
+			console.log(path);
+			process.exit(0);
+		} catch {
+			console.log("e2");
+			process.exit();
+		}
+	}
 	case "mkdir": {
 		try {
 			await Fs.mkdir(path, { recursive: true });
@@ -71,16 +91,6 @@ switch (subcommand) {
 	case "rm": {
 		try {
 			await Fs.rm(path, { recursive: true });
-			console.log(path);
-			process.exit(0);
-		} catch {
-			console.log("e2");
-			process.exit();
-		}
-	}
-	case "fout": {
-		try {
-			await Fs.writeFile(path, arg_2);
 			console.log(path);
 			process.exit(0);
 		} catch {
