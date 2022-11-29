@@ -68,6 +68,16 @@ switch (subcommand) {
 	}
 
 		//write
+	case "cp": {
+		try {
+			await Fs.copyFile(path, arg_2);
+			console.log("to '%s'", arg_2);
+			process.exit(0);
+		} catch {
+			console.log("e2");
+			process.exit();
+		}
+	}
 	case "fout": {
 		try {
 			await Fs.writeFile(path, arg_2);
