@@ -9,8 +9,8 @@ let dir = "Storage";
 let user_number = process.argv[2];
 let subcommand = process.argv[3];
 let user_dir = Path.join(process.cwd(), dir, `a${user_number}`);
-let path_1 = process.argv[4] ?? ".";
-let path_2 = process.argv[5] ?? ".";
+let path = process.argv[4] ?? ".";
+let arg_2 = process.argv[5] ?? ".";
 
 //safety
 if (subcommand == "init") {
@@ -32,13 +32,13 @@ try {
 
 //main]
 switch (subcommand) {
-	//read
+		//read
 	case "ls": {
 		try {
-			let items = await Fs.readdir(path_1) as any[];
+			let items = await Fs.readdir(path) as any[];
 			let i = 0;
 			while (i < items.length) {
-				let is_dir = (await Fs.stat(Path.join(path_1, items[i]))).isDirectory();
+				let is_dir = (await Fs.stat(Path.join(path, items[i]))).isDirectory();
 				let type = is_dir ? "dir" : "file";
 
 				items[i] = [ type, items[i] ];
@@ -53,15 +53,35 @@ switch (subcommand) {
 		}
 	}
 	case "whereis": {
-		console.log(Path.join(process.cwd(), path_1));
+		console.log(Path.join(process.cwd(), path));
 		process.exit(0);
 	}
 
 		//write
 	case "mkdir": {
 		try {
-			await Fs.mkdir(path_1, { recursive: true });
-			console.log(path_1);
+			await Fs.mkdir(path, { recursive: true });
+			console.log(path);
+			process.exit(0);
+		} catch {
+			console.log("e2");
+			process.exit();
+		}
+	}
+	case "rm": {
+		try {
+			await Fs.rm(path, { recursive: true });
+			console.log(path);
+			process.exit(0);
+		} catch {
+			console.log("e2");
+			process.exit();
+		}
+	}
+	case "fout": {
+		try {
+			await Fs.writeFile(path, arg_2);
+			console.log(path);
 			process.exit(0);
 		} catch {
 			console.log("e2");
