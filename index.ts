@@ -1,9 +1,5 @@
 #! /usr/bin/env node
 
-/* TODO
-- absolute paths
-*/
-
 //IMPORTS
 import Fs from "fs/promises";
 import Path from "path";
@@ -49,10 +45,21 @@ switch (subcommand) {
 			process.exit();
 		}
 	}
-
 	case "whereis": {
 		console.log(Path.join(process.cwd(), path_1));
 		process.exit(0);
+	}
+
+		//write
+	case "mkdir": {
+		try {
+			await Fs.mkdir(path_1, { recursive: true });
+			console.log(path_1);
+			process.exit(0);
+		} catch {
+			console.log("e2");
+			process.exit();
+		}
 	}
 
 	default: {
