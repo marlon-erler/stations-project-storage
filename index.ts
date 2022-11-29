@@ -35,8 +35,15 @@ switch (subcommand) {
 	//read
 	case "ls": {
 		try {
-			let items = await Fs.readdir(path_1);
-			items.map(async item => [ item, (await Fs.stat(Path.join(path_1, item))).isDirectory() == true ? "dir" : "file" ]);
+			let items = await Fs.readdir(path_1) as any[];
+			let i = 0;
+			while (i < items.length) {
+				let is_dir = (await Fs.stat(Path.join(path_1, items[i]))).isDirectory();
+				let type = is_dir ? "dir" : "file";
+
+				items[i] = [ type, items[i] ];
+				i++;
+			}
 			let response = JSON.stringify(items, null, 4);
 			console.log(response);
 			process.exit(0);
